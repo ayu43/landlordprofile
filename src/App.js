@@ -1,7 +1,8 @@
 //import { AppComponent } from './app.component';	
 import './App.css';
 import React, { Component } from 'react';
-import fire from 'firebase';
+//import fire from 'firebase';
+import fire from './fire';
 
 class App extends Component {
 
@@ -51,7 +52,7 @@ class App extends Component {
 		console.log(this.state);
 		const landlordRef = fire.database().ref('landlord');
 		const landlord = {
-			name: this.state.Name,
+			name: this.state.name,
 			age: this.state.age,
 			aboutMe: this.state.aboutMe,
 			price: this.state.price,
