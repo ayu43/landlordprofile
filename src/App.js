@@ -118,7 +118,7 @@ class App extends Component {
 		<form onSubmit={this.handleSubmit}>
 		<div className="App">
 			<header className="Profile">
-				<h1>Your Profile</h1>
+				<h1>Submit Your Landlord Profile</h1>
 			</header>
 			<header className="Names">
 				<label>Name:&nbsp;</label>
@@ -267,7 +267,7 @@ class App extends Component {
 			<br/>
 			<br/>
 			<header className="Bus">
-				<label>Preferred Bus Routes:</label>
+				<label>Nearby Bus Routes:</label>
 				<br/>
 				<input
 					type = "checkbox"
