@@ -2,9 +2,9 @@
 
 
 import firebase from 'firebase'
-import "firebase/firestore";
-import { AppComponent } from './app.component';	
-import './app';
+// import "firebase/firestore";
+// import { AppComponent } from './app.component';	
+// import './app';
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -19,8 +19,8 @@ import './app';
   };
   // Initialize Firebase
 
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  // firebase.initializeApp(firebaseConfig);
+  // firebase.analytics();
 
 var defaultApp = firebase.initializeApp(firebaseConfig);
 console.log(defaultApp.name);
