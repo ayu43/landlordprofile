@@ -41,9 +41,29 @@ class App extends Component {
 		const landlordRef = fire.database().ref('landlord');
 		console.log(this.refs.name.value)
 		const landlords = this.state
-		landlords.name=this.refs.name.value
-		landlords.age=this.refs.age.value
+
+
+		landlords.name = this.refs.name.value
+		landlords.age = this.refs.age.value
+		landlords.aboutMe = this.refs.aboutMe.value
+		landlords.price =  this.refs.price.value
+		landlords.gender = this.refs.gender.value
+		landlords.housemates = this.refs.housemates.value
+		landlords.bed = this.refs.bed.value
+		landlords.bath = this.refs.bath.value
+		landlords.garage =  this.refs.garage.value
+		landlords.hasPets = this.refs.hasPets.checked
+		landlords.route10 = this.refs.route10.checked
+		landlords.route15 = this.refs.route15.checked
+		landlords.route16 = this.refs.route16.checked
+		landlords.route20 = this.refs.route20.checked
+		landlords.route22 = this.refs.route22.checked
+		landlords.beach = this.refs.beach.checked
+		landlords.downtown = this.refs.downtown.checked
+		landlords.campus = this.refs.campus.checked
 		this.setState(landlords)
+
+
 		// this.setState({
 		// 	//name: this.refs.name.value,
 		// 	name: "abc",
@@ -98,12 +118,37 @@ class App extends Component {
 		console.log(landlord.name)
 		console.log(landlord.age)
 		landlordRef.push(landlord);
-		this.refs.name.value=''
-		this.refs.age.value=''
-		// this.setState({
-		// // name: '',
-		// // age: '',
-		// aboutMe: '',
+
+
+		/*this.refs.name.value = ''
+		this.refs.age.value = ''
+		this.state.aboutMe = ''
+		this.state.price = ''
+		this.state.gender = ''
+		this.state.housemates = ''
+		this.state.bed = ''
+		this.state.bath = ''
+		this.state.garage = ''
+		this.state.hasPets = false
+
+		this.state.route10 = false
+		this.state.route15 = false
+		this.state.route16 = false
+		this.state.route19 = false
+		this.state.route20 = false
+		this.state.route22 = false
+		this.state.beach = false
+		this.state.downtown = false
+		this.state.campus = false*/
+
+
+
+
+
+		//this.setState({
+		//name: '',
+		//age: '',
+		//aboutMe: '',
 		// price: '',
 		// gender: '',
 		// housemates: '',
@@ -122,7 +167,7 @@ class App extends Component {
 		// beach: false,
 		// downtown: false,
 		// campus: false
-		// });
+		 //});
 	}
 	render() {
 		const landlords = this.state;
