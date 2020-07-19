@@ -7,153 +7,123 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			name: '',
+			age: '',
+			aboutMe: '',
+			price: '',
+			gender: '',
+			housemates: '',
+			bed: '',
+			bath: '',
+			garage: '',
+			hasPets: false,
 
-			landlords: []
+			route10: false,
+			route15: false,
+			route16: false,
+			route19: false,
+			route20: false,
+			route22: false,
+			beach: false,
+			downtown: false,
+			campus: false
 		};
 	}
-
-
-	componentDidMount() {
-		this.getUserData();
-	}
-
-
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState !== this.state) {
-			this.writeUserData();
-		}
-	}
-
-	writeUserData = () => {
-		fire.database()
-			.ref("landlord")
-			.set(this.state);
-		console.log("DATA SAVED");
-	};
-
-	getUserData = () => {
-		let ref = fire.database().ref("landlord");
-		ref.on("value", snapshot => {
-			const state = snapshot.val();
-			this.setState(state);
-		});
-	};
-
-
-
-
-
-
-
-
-
-	/*handleChange = (evt) => {	//deleted 
+	handleChange = (evt) => {
 		// const value = evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
 		// this.setState({
 		// ...this.state,
 		// [evt.target.name]: value
 		// });
-	}*/
+	}
 	handleSubmit = (e) => {
 		e.preventDefault();
-		//console.log(this.state.name);
-		//console.log(this.state);
 		const landlordRef = fire.database().ref('landlord');
+		console.log(this.refs.name.value)
+		const landlords = this.state
+		landlords.name=this.refs.name.value
+		landlords.age=this.refs.age.value
+		this.setState(landlords)
+		// this.setState({
+		// 	//name: this.refs.name.value,
+		// 	name: "abc",
+		// 	age: this.refs.age.value,
+		// 	aboutMe: this.refs.aboutMe.value,
+		// 	price: this.refs.price.value,
+		// 	gender: this.refs.gender.value,
+		// 	housemates: this.refs.housemates.value,
+		// 	bed: this.refs.bed.value,
+		// 	bath: this.refs.bath.value,
+		// 	garage: this.refs.garage.value,
+		// 	hasPets: this.refs.hasPets.checked,
+		// 	route10: this.refs.route10.checked,
+		// 	route15: this.refs.route15.checked,
+		// 	route16: this.refs.route16.checked,
+		// 	route19: this.refs.route19.checked,
+		// 	route20: this.refs.route20.checked,
+		// 	route22: this.refs.route22.checked,
+		// 	beach: this.refs.beach.checked,
+		// 	downtown: this.refs.downtown.checked,
+		// 	campus: this.refs.campus.checked
 
-
-		let name = this.refs.name.value
-		let age = this.refs.age.value
-		let aboutMe = this.refs.aboutMe.value
-		let price = this.refs.price.value
-		let gender = this.refs.gender.value
-		let housemates = this.refs.housemates.value
-		let bed = this.refs.bed.value
-		let bath = this.refs.bath.value
-		let garage = this.refs.garage.value
-		let hasPets = this.refs.hasPets.checked
-		let route10 = this.refs.route10.checked
-		let route15 = this.refs.route15.checked
-		let route16 = this.refs.route16.checked
-		let route19 = this.refs.route19.checked
-		let route20 = this.refs.route20.checked
-		let route22 = this.refs.route22.checked
-		let beach = this.refs.beach.checked
-		let downtown = this.refs.downtown.checked
-		let campus = this.refs.campus.checked
-
-		let uid = this.refs.uid.value
-
-
-
+		// })
+		console.log(this.state.name)
+		console.log(this.state.age)
 		//this.state.name=this.refs.name.value
 		//this.state.age=this.refs.age.value
 
-		if (uid && name && age) {
-			const { landlords } = this.state;
-			const devIndex = landlords.findIndex(data => {
-				return data.uid === uid;
-			});
-			landlords[devIndex].name = name;
-			landlords[devIndex].age = age;
-			landlords[devIndex].aboutMe = aboutMe;
-			landlords[devIndex].price = price;
-			landlords[devIndex].gender = gender;
-			landlords[devIndex].housemates = housemates;
-			landlords[devIndex].bed = bed;
-			landlords[devIndex].bath = bath;
-			landlords[devIndex].garage = garage;
-			landlords[devIndex].hasPets = hasPets;
-			landlords[devIndex].route15 = route15;
-			landlords[devIndex].route10 = route10;
-			landlords[devIndex].route16 = route16;
-			landlords[devIndex].route19 = route19;
-			landlords[devIndex].route20 = route20;
-			landlords[devIndex].route22 = route22;
-			landlords[devIndex].beach = beach;
-			landlords[devIndex].downtown = downtown;
-			landlords[devIndex].campus = campus;
 
-			this.setState({ landlords });
-		} else if (name && age) {
-			const uid = new Date().getTime().toString();
-			const { landlords } = this.state;
-			landlords.push({ uid, name, age });
-			this.setState({ landlords });
+		const landlord = {
+			name: this.state.name,
+			age: this.state.age,
+			aboutMe: this.state.aboutMe,
+			price: this.state.price,
+			gender: this.state.gender,
+			housemates: this.state.housemates,
+			bed: this.state.bed,
+			bath: this.state.bath,
+			garage: this.state.garage,
+			hasPets: this.state.hasPets,
+
+			route10: this.state.route10,
+			route15: this.state.route15,
+			route16: this.state.route16,
+			route19: this.state.route19,
+			route20: this.state.route20,
+			route22: this.state.route22,
+			beach: this.state.beach,
+			downtown: this.state.downtown,
+			campus: this.state.campus
 		}
+		console.log(landlord.name)
+		console.log(landlord.age)
+		landlordRef.push(landlord);
+		this.refs.name.value=''
+		this.refs.age.value=''
+		// this.setState({
+		// // name: '',
+		// // age: '',
+		// aboutMe: '',
+		// price: '',
+		// gender: '',
+		// housemates: '',
+		// bed: '',
+		// bath: '',
+		// wantGarage: false,
+		// noGarage: false,
+		// hasPets: false,
 
-		this.refs.name.value = ""
-		this.refs.age.value = ""
-		this.refs.aboutMe.value = ""
-		this.refs.price.value = ""
-		this.refs.gender.value = ""
-		this.refs.housemates.value = ""
-		this.refs.bed.value = ""
-		this.refs.bath.value = ""
-		this.refs.garage.value = ""
-		this.refs.hasPets.checked = false
-		this.refs.route10.checked = false
-		this.refs.route15.checked = false
-		this.refs.route16.checked = false
-		this.refs.route19.checked = false
-		this.refs.route20.checked = false
-		this.refs.route22.checked = false
-		this.refs.beach.checked = false
-		this.refs.downtown.checked = false
-		this.refs.campus.checked = false
-		this.refs.uid.value = ""
-
+		// route10: false,
+		// route15: false,
+		// route16: false,
+		// route19: false,
+		// route20: false,
+		// route22: false,
+		// beach: false,
+		// downtown: false,
+		// campus: false
+		// });
 	}
-
-
-
-
-
-
-
-
-
-
-
 	render() {
 		const landlords = this.state;
 		return (
@@ -175,21 +145,18 @@ class App extends Component {
 						</header>
 						<br />
 						<br />
-
 						<div className="row">
 							<div className="col-xl-12">
-								{landlords.map(landlord => (
-									<div
-										key={landlord.uid} //need a unique key
-										className="card float-left"
-										style={{ width: "18rem", marginRight: "1rem" }}
-									>
-										<div className="card-body">
-											<h5 className="card-title">{landlord.name}</h5>
-											<p className="card-text">{landlord.age}</p>
-											<p className="card-text">{landlord.price}</p>
-										</div>
-									</div>))}
+								<div
+									key={123}
+									className="card float-left"
+									style={{ width: "18rem", marginRight: "1rem" }}
+								>
+									<div className="card-body">
+										<h5 className="card-title">{landlords.name}</h5>
+										<p className="card-text">{landlords.age}</p>
+									</div>
+								</div>
 							</div>
 						</div>
 						<header className="AGE">
@@ -417,7 +384,7 @@ class App extends Component {
 						</header>
 						<br />
 						<br />
-						<button type="submit" onClick={this.handleSubmit}>Submit</button>
+						<button type="submit">Submit</button>
 						<br />
 						<br />
 						<br />
@@ -428,6 +395,4 @@ class App extends Component {
 		);
 	}
 }
-
-
 export default App;
